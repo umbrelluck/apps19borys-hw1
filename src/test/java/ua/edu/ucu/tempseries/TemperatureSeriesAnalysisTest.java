@@ -87,7 +87,7 @@ public class TemperatureSeriesAnalysisTest {
     public void addTemps() {
         analys.addTemps(5, 6, 9, 8);
         double[] mas = Arrays.copyOf(analys.getTemperatures(), analys.getSize());
-        double[] correct={5, 9, 32, 1, 589, 324, 56, -78, -5, -15, -75, 1, -95, -25, 1, 0.9, -0.05, 5, 6, 9, 8};
+        double[] correct = {5, 9, 32, 1, 589, 324, 56, -78, -5, -15, -75, 1, -95, -25, 1, 0.9, -0.05, 5, 6, 9, 8};
         assertArrayEquals(correct, mas, 0.00000001);
     }
 
