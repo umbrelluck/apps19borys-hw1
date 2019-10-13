@@ -22,7 +22,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] getArray() {
-        return temperatures;
+        return Arrays.copyOf(temperatures,temperatures.length);
     }
 
     public int getSize() {

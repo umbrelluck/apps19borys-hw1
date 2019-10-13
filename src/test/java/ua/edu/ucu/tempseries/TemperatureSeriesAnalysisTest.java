@@ -79,8 +79,13 @@ public class TemperatureSeriesAnalysisTest {
     @Test
     public void summaryStatistics() {
         TempSummaryStatistics stats = analys.summaryStatistics();
-        String msg = "TempSummaryStatistics{avgTemp=42.69705882352941, devTemp=162.11361302929427, minTemp=-95.0, maxTemp=589.0}";
+        String msg = "TempSummaryStatistics{avgTemp=42.69705882352941, " +
+                "devTemp=162.11361302929427, minTemp=-95.0, maxTemp=589.0}";
         assertEquals(msg, stats.toString());
+        assertEquals(42.69705882352941, stats.getAvgTemp(), 0.0000001);
+        assertEquals(162.11361302929427, stats.getDevTemp(), 0.0000001);
+        assertEquals(-95.0, stats.getMinTemp(), 0.0000001);
+        assertEquals(586.0, stats.getMaxTemp(), 0.0000001);
     }
 
     @Test()
