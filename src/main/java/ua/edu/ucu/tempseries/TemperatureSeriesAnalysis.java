@@ -5,9 +5,9 @@ import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
 
+    private static final int ZERO = -273;
     private double[] temperatures;
     private int size;
-    private static final int zero = -273;
 
     public TemperatureSeriesAnalysis() {
         temperatures = new double[1];
@@ -21,7 +21,7 @@ public class TemperatureSeriesAnalysis {
         size = temperatureSeries.length;
     }
 
-    public double[] getTemperatures() {
+    public double[] getArray() {
         return temperatures;
     }
 
@@ -38,7 +38,7 @@ public class TemperatureSeriesAnalysis {
 
     private void checkTemp(@org.jetbrains.annotations.NotNull double[] arr) {
         for (double el : arr) {
-            if (el < zero) {
+            if (el < ZERO) {
                 throw new InputMismatchException("Temperature is below "
                         + "absolute zero");
             }
