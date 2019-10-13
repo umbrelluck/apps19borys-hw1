@@ -15,7 +15,8 @@ public class TemperatureSeriesAnalysis {
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         checkTemp(temperatureSeries);
-        temperatures = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
+        temperatures = Arrays.copyOf(temperatureSeries,
+                temperatureSeries.length);
         size = temperatureSeries.length;
     }
 
@@ -28,11 +29,16 @@ public class TemperatureSeriesAnalysis {
     }
 
     private void notNull(double[] arr) {
-        if (size == 0|| arr.length==0) throw new IllegalArgumentException("There are no temperatures to calculate.");
+        if (size == 0 || arr.length == 0)
+            throw new IllegalArgumentException("There are no temperatures to " +
+                    "calculate.");
     }
 
     private void checkTemp(@org.jetbrains.annotations.NotNull double[] arr) {
-        for (double el : arr) if (el < -273) throw new InputMismatchException("Temperature is below absolute zero");
+        for (double el : arr)
+            if (el < -273)
+                throw new InputMismatchException("Temperature is below " +
+                        "absolute zero");
     }
 
 
@@ -45,7 +51,8 @@ public class TemperatureSeriesAnalysis {
         notNull(temperatures);
         double avg = average();
         int sum = 0;
-        for (double temperature : temperatures) sum += (temperature - avg)*(temperature-avg);
+        for (double temperature : temperatures)
+            sum += (temperature - avg) * (temperature - avg);
         return Math.sqrt(sum / (double) temperatures.length);
     }
 
@@ -107,7 +114,8 @@ public class TemperatureSeriesAnalysis {
     public int addTemps(double... temps) {
         checkTemp(temps);
         double[] tmp = Arrays.copyOf(temperatures, size);
-        while (temps.length > temperatures.length - size) temperatures = new double[temperatures.length * 2];
+        while (temps.length > temperatures.length - size)
+            temperatures = new double[temperatures.length * 2];
         for (int i = 0; i < tmp.length + temps.length; i++)
             if (i < tmp.length) temperatures[i] = tmp[i];
             else temperatures[i] = temps[i - tmp.length];
