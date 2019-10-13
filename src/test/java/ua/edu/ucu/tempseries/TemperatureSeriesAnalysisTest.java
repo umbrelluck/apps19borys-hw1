@@ -85,7 +85,7 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(42.69705882352941, stats.getAvgTemp(), 0.0000001);
         assertEquals(162.11361302929427, stats.getDevTemp(), 0.0000001);
         assertEquals(-95.0, stats.getMinTemp(), 0.0000001);
-        assertEquals(586.0, stats.getMaxTemp(), 0.0000001);
+        assertEquals(589.0, stats.getMaxTemp(), 0.0000001);
     }
 
     @Test()
