@@ -28,11 +28,11 @@ public class TempSummaryStatistics {
     }
 
     public String toString() {
-        return "TempSummaryStatistics{" +
-                "avgTemp=" + avgTemp +
-                ", devTemp=" + devTemp +
-                ", minTemp=" + minTemp +
-                ", maxTemp=" + maxTemp +
-                '}';
+        return "TempSummaryStatistics{"
+                + "avgTemp=" + avgTemp
+                + ", devTemp=" + devTemp
+                + ", minTemp=" + minTemp
+                + ", maxTemp=" + maxTemp
+                + '}';
     }
 }

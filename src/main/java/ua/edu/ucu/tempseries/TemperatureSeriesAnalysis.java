@@ -2,13 +2,22 @@ package ua.edu.ucu.tempseries;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.OptionalDouble;
-import java.util.function.DoubleBinaryOperator;
 
 public class TemperatureSeriesAnalysis {
 
-    static private double[] temperatures;
-    static private int size;
+    private static double[] temperatures;
+    private static int size;
+
+    public TemperatureSeriesAnalysis() {
+        temperatures = new double[10];
+        size = 0;
+    }
+
+    public TemperatureSeriesAnalysis(double[] temperatureSeries) {
+        checkTemp(temperatureSeries);
+        temperatures = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
+        size = temperatureSeries.length;
+    }
 
     public double[] getTemperatures() {
         return temperatures;
@@ -18,45 +27,35 @@ public class TemperatureSeriesAnalysis {
         return size;
     }
 
-    public TemperatureSeriesAnalysis() {
-        temperatures = new double[10];
-        size = 0;
+    private void notNull(double[] arr) {
+        if (size == 0|| arr.length==0) throw new IllegalArgumentException("There are no temperatures to calculate.");
     }
 
-    private void not_null(double[] arr) {
-        if (size == 0) throw new IllegalArgumentException("There are no temperatures to calculate.");
-    }
-
-    private void check_temp(@org.jetbrains.annotations.NotNull double[] arr) {
+    private void checkTemp(@org.jetbrains.annotations.NotNull double[] arr) {
         for (double el : arr) if (el < -273) throw new InputMismatchException("Temperature is below absolute zero");
     }
 
-    public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        check_temp(temperatureSeries);
-        temperatures = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
-        size = temperatureSeries.length;
-    }
 
     public double average() {
-        not_null(temperatures);
+        notNull(temperatures);
         return Arrays.stream(temperatures).sum() / temperatures.length;
     }
 
     public double deviation() {
-        not_null(temperatures);
+        notNull(temperatures);
         double avg = average();
         int sum = 0;
-        for (double temperature : temperatures) sum += Math.pow((temperature - avg), 2);
+        for (double temperature : temperatures) sum += (temperature - avg)*(temperature-avg);
         return Math.sqrt(sum / (double) temperatures.length);
     }
 
     public double min() {
-        check_temp(temperatures);
+        checkTemp(temperatures);
         return Arrays.stream(temperatures).min().getAsDouble();
     }
 
     public double max() {
-        check_temp(temperatures);
+        checkTemp(temperatures);
         return Arrays.stream(temperatures).max().getAsDouble();
     }
 
@@ -65,7 +64,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double findTempClosestToValue(double tempValue) {
-        check_temp(temperatures);
+        checkTemp(temperatures);
         double temp = 0, delta = Double.MAX_VALUE;
         for (double elem : temperatures)
             if (Math.abs(elem - tempValue) < delta) {
@@ -106,7 +105,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double... temps) {
-        check_temp(temps);
+        checkTemp(temps);
         double[] tmp = Arrays.copyOf(temperatures, size);
         while (temps.length > temperatures.length - size) temperatures = new double[temperatures.length * 2];
         for (int i = 0; i < tmp.length + temps.length; i++)
