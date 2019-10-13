@@ -10,8 +10,16 @@ public class TemperatureSeriesAnalysis {
     static private double[] temperatures;
     static private int size;
 
+    public double[] getTemperatures() {
+        return temperatures;
+    }
+    public int getSize() {
+        return size;
+    }
+
     public TemperatureSeriesAnalysis() {
         temperatures = new double[10];
+        size=0;
     }
 
     private void not_null(double[] arr){
@@ -60,7 +68,7 @@ public class TemperatureSeriesAnalysis {
         double temp=0, delta= Double.MAX_VALUE;
         for(double elem : temperatures)
             if (Math.abs(elem-tempValue)<delta){
-                delta=Math.abs(elem-0);
+                delta=Math.abs(elem-tempValue);
                 temp=elem;
             }
         return temp;
@@ -74,6 +82,7 @@ public class TemperatureSeriesAnalysis {
             result[pt]=temp;
             pt++;
         }
+        Arrays.sort(result);
         return  result;
     }
 
@@ -85,6 +94,7 @@ public class TemperatureSeriesAnalysis {
             result[pt]=temp;
             pt++;
         }
+        Arrays.sort(result);
         return  result;
     }
 
