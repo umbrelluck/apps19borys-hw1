@@ -9,7 +9,7 @@ public class TemperatureSeriesAnalysis {
     private static int size;
 
     public TemperatureSeriesAnalysis() {
-        temperatures = new double[10];
+        temperatures = new double[1];
         size = 0;
     }
 
@@ -30,15 +30,16 @@ public class TemperatureSeriesAnalysis {
 
     private void notNull(double[] arr) {
         if (size == 0 || arr.length == 0)
-            throw new IllegalArgumentException("There are no temperatures to " +
-                    "calculate.");
+            throw new IllegalArgumentException("There are no temperatures to "
+                    + "calculate.");
     }
 
     private void checkTemp(@org.jetbrains.annotations.NotNull double[] arr) {
+        int zero = -273;
         for (double el : arr)
-            if (el < -273)
-                throw new InputMismatchException("Temperature is below " +
-                        "absolute zero");
+            if (el < zero)
+                throw new InputMismatchException("Temperature is below "
+                        + "absolute zero");
     }
 
 
